@@ -1,32 +1,12 @@
-Progressus - Free business/corporate Bootstrap template
-=============
+Captcha IUC API
 
-Progressus is a free, responsive, nice-looking business template based on Bootstrap HTML/CSS framework. 
+This API gives another way to use CAPTCHA on your local website.
+Its UI is based on  
+ * Progressus template - http://creativecommons.org/licenses/by/3.0/
+ * StartBoostrap shop Home Page template
 
-
-License
--------
-**Creative Commons Attribution 3.0** - http://creativecommons.org/licenses/by/3.0/
-
-
-Features
+Features 
 -----------
-
-* Easy to use, fat-free HTML and CSS code.
-* 7 ready-made templates for most common tasks
-* Responsive design
-* High overral quality, the template does worth to be premium.
-
-
-Bug tracker
------------
-
-Found a bug? Please create an issue here on GitHub! 
-https://github.com/pozh/Progressus/issues
-
-
-Credits
--------
-* Design and development: **Sergey Pozhilov** - http://pozhilov.com
-* Photos used in template: **Unsplash** - http://unsplash.com
-* More free templates by Sergey: http://gettemplate.com
+* Easy to use
+* Based on Javascript so really reactive
+* Accessible for everyone

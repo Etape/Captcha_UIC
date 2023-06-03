@@ -80,21 +80,22 @@
 		<!-- Product -->
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
-				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+				<div class="col-md-6" id="item_image">
+				<img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
 				<div class="col-md-6">
-					<div class="small mb-1"><p> SKU: BST-498 </p></div>
-					<h1 class="display-5 fw-bolder">Shop item template</h1>
+					<div class="small mb-1"><p id="item_code"> SKU: BST-498 </p></div>
+					<h1 class="display-5 fw-bolder" id="item_name">Shop item </h1>
 					<div class="fs-5 mb-5">
 						<span>4000 Fcfa</span>
 					</div>
-					<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+					<p class="lead" id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
 					<div class="d-flex w-60 mb-5 mt-2">
-						<img id="orange_money" class="card-img-top m-2 mb-md-0 " src="assets/images/orange-money-logo.png" alt="..." height="100px"/>
-						<img id="mtn_money" class="card-img-top m-2 mb-md-0 " src="assets/images/momo.png" alt="..."  height="100px" />
-						<span class="mt-5 md-3"  style="display: none;"><input id="phone_number" type="phone" placeholder="+237 6xx-xxx-xxx" class="input"/></span>
+						<img id="orange_money" class="card-img-top m-2 mb-md-0 " src="assets/images/orange-money-logo.png" alt="..." height="100px" onclick="payment_mode(this)"/>
+						<img id="mtn_money" class="card-img-top m-2 mb-md-0 " src="assets/images/momo.png" alt="..."  height="100px"  onclick="payment_mode(this)"/>
+						<span class="mt-5 md-3" id="phone_section"   style="display: none;"><input id="phone_number" type="phone" placeholder="+237 6xx-xxx-xxx" class="input"/></span>
 					</div>
 					<div class="d-flex">
-						<button class="btn btn-outline-dark flex-shrink-0" type="button">
+						<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="pay()">
 							<i class="bi-cart-fill me-1"></i>
 							Acheter
 						</button>
@@ -103,8 +104,8 @@
 			</div>
 		</div>
 		<!-- APIKEYS -->
-		<div class="container px-4 px-lg-5 my-5" id="apikeys_section" style="display: none;">
-			<div class="row gx-4 gx-lg-5 align-items-center"  style="margin-left: 20px;padding-left: 20px;">
+		<div class="container px-4 px-lg-5 my-5 " id="apikeys_section" style="display: none;">
+			<div class="row gx-4 gx-lg-5 align-items-center"  style="padding-left: 20px;padding-right: 10px;">
 				<h2> Felicitations, vous venez d'effectuer votre achat avec succes !! </h2>
 				<span> Vos clés d'utilisation </span>
 				<div id="apikeys" class="w-100 ml-2 bg-dark text-white">
@@ -115,8 +116,8 @@
 			</div>
 		</div>
 		<!-- How to use It -->
-		<div class="container px-4 px-lg-5 my-5"  id="howtouse_section"  style="display: none;">
-			<div class="row gx-4 gx-lg-5 align-items-center"  style="margin-left: 20px;padding-left: 20px;">
+		<div class="container px-4 px-lg-5 my-5 "  id="howtouse_section"  style="display: none;">
+			<div class="row gx-4 gx-lg-5 align-items-center"  style="padding-left: 20px;padding-right: 10px;">
 				<h2> Comment ajouter recaptcha dans vos sites</h2>
 				<div id="howtouse" class="col-md-6 ml-2 bg-dark text-white">
 					&lt;html&gt; <br>
@@ -155,6 +156,7 @@
 	</section>
 
 
+
 	<footer id="footer" class="top-space">
 
 		<div class="footer1">
@@ -164,16 +166,16 @@
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contact</h3>
 						<div class="widget-body">
-							<p>+234 23 9873237<br>
-								<a href="mailto:#">some.email@somewhere.com</a><br>
+							<p>+237 69873237<br>
+								<a href="mailto:#">iucinfo@iuc.com</a><br>
 								<br>
-								234 Hidden Pond Road, Ashland City, TN 37015
+								Cameroun, Douala, Logbessou
 							</p>	
 						</div>
 					</div>
 
 					<div class="col-md-3 widget">
-						<h3 class="widget-title">Follow me</h3>
+						<h3 class="widget-title">Suivez nous</h3>
 						<div class="widget-body">
 							<p class="follow-me-icons">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
@@ -181,14 +183,6 @@
 								<a href=""><i class="fa fa-github fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
 							</p>	
-						</div>
-					</div>
-
-					<div class="col-md-6 widget">
-						<h3 class="widget-title">Text widget</h3>
-						<div class="widget-body">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
 						</div>
 					</div>
 
@@ -210,7 +204,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2023, IUC, Douala. Designed by Groupe 3 
 							</p>
 						</div>
 					</div>
@@ -221,7 +215,63 @@
 
 	</footer>	
 		
+	<script>
+		var item=location.search.substring(1);
+		console.log(item);
 
+		var codes=[' Captcha UIC : ks 01B ',' Captcha UIC : ks 02H ',' Captcha UIC : ks 41HC ',' Captcha UIC : ks 051H ',' Captcha UIC : ks 1A571 '];
+		var names=['Soft Captcha','Maths Captcha','Words Captcha','3D Words Captcha','Images Captcha'];
+		var images=['soft','maths','words','3d_words','images'];
+		var descriptions=[" Modèle soft rapide leger ,Accessible en un seul clic."
+		,"Modèle simple et puissant propose toute une panoplie de calculs rapides permettant de securiser votre site."
+		,"Modèle simple et puissant propose toute une panoplie de chaines de caractères permettant de securiser votre site."
+		,"Modèle simple et puissant propose toute une panoplie de chaines de caractères permettant de securiser votre site."
+		,"Modèle simple et puissant propose toute une panoplie d'images et d'enigmes permettant de securiser votre site."];
+		
+		var item_code=codes[parseInt(item)-1];
+		var item_image=images[parseInt(item)-1];
+		var item_name=names[parseInt(item)-1];
+		var item_description=descriptions[parseInt(item)-1];
+
+		document.getElementById("item_code").innerText=item_code;
+		document.getElementById("item_name").innerText=item_name;
+		document.getElementById("description").innerText=item_description;
+		 var pay_mode="";
+		function payment_mode(elt){
+			document.getElementById("mtn_money").style.border="none";
+			document.getElementById("orange_money").style.border="none";
+
+			document.getElementById("phone_section").style.display="inline";
+			elt.style.border="2px solid blue";
+			elt.style.borderRadius="10px";
+
+			if(elt.id=="mtn_money"){
+				pay_mode="mtn";
+			}
+			else
+				pay_mode="orange";
+		}
+
+		function pay(){
+			var phone_number=document.getElementById("phone_number").value.trim().replace(/\s/g,'');
+			console.log(phone_number);
+			console.log(phone_number.length);
+			if(pay_mode!="" ){
+				if(phone_number.startsWith("+2376") && phone_number.length==13){
+					document.getElementById("apikeys_section").style.display="inline-block";
+					document.getElementById("howtouse_section").style.display="inline-block";
+				}
+				else{
+					document.getElementById("phone_number").style.borderColor="red";
+				}
+			}
+			else{
+				alert("Veuillez selectionner un mode de paiement");
+			}
+
+		}
+
+	</script>
 
 
 

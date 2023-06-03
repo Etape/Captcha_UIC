@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>Captcha UIT</title>
+
+	<link rel="shortcut icon" href="assets/images/logo_favicon_captcha.png">
+	
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="assets/css/styles_plugins.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- Bootstrap icons-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<style>
+	#products p,#products span,#products button{
+		font-weight: 400;
+		font-size: 22px;
+	}
+	#products h1{
+		font-weight: 500;
+		font-size: 50px;
+	}
+	#products p{
+		font-weight: 200;
+		font-size: 22px;
+	}
+	#products button{
+		border: 2px solid #212529;
+	}
+	#apikeys,#howtouse,#video{
+		font-weight: 200;
+		font-size: 20px;
+		border-radius: 20px;
+		padding: 10px;
+	}
+</style>
+
+<body class="home">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src="assets/images/logo_captcha_flatten_white.png" alt="Progressus HTML5 template" height="40"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="index.html">Home</a></li>
+					<li class="active"><a href="#">Nos Plugins</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a class="btn" href="signin.html">Connexion / Inscription</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<!-- Product section-->
+	<section id="products" class="py-5" style="margin-top: 100px;">
+		
+		<!-- Product -->
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+				<div class="col-md-6">
+					<div class="small mb-1"><p> SKU: BST-498 </p></div>
+					<h1 class="display-5 fw-bolder">Shop item template</h1>
+					<div class="fs-5 mb-5">
+						<span>4000 Fcfa</span>
+					</div>
+					<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+					<div class="d-flex w-60 mb-5 mt-2">
+						<img id="orange_money" class="card-img-top m-2 mb-md-0 " src="assets/images/orange-money-logo.png" alt="..." height="100px"/>
+						<img id="mtn_money" class="card-img-top m-2 mb-md-0 " src="assets/images/momo.png" alt="..."  height="100px" />
+						<span class="mt-5 md-3"  style="display: none;"><input id="phone_number" type="phone" placeholder="+237 6xx-xxx-xxx" class="input"/></span>
+					</div>
+					<div class="d-flex">
+						<button class="btn btn-outline-dark flex-shrink-0" type="button">
+							<i class="bi-cart-fill me-1"></i>
+							Acheter
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- APIKEYS -->
+		<div class="container px-4 px-lg-5 my-5" id="apikeys_section" style="display: none;">
+			<div class="row gx-4 gx-lg-5 align-items-center"  style="margin-left: 20px;padding-left: 20px;">
+				<h2> Felicitations, vous venez d'effectuer votre achat avec succes !! </h2>
+				<span> Vos clés d'utilisation </span>
+				<div id="apikeys" class="w-100 ml-2 bg-dark text-white">
+					UserKey: aisjduedsndnbdbnfhfey124d5s15
+					<br>
+					APIKey: aisjduqzad1dz4d12a4fhfey124d5s15
+				</div>
+			</div>
+		</div>
+		<!-- How to use It -->
+		<div class="container px-4 px-lg-5 my-5"  id="howtouse_section"  style="display: none;">
+			<div class="row gx-4 gx-lg-5 align-items-center"  style="margin-left: 20px;padding-left: 20px;">
+				<h2> Comment ajouter recaptcha dans vos sites</h2>
+				<div id="howtouse" class="col-md-6 ml-2 bg-dark text-white">
+					&lt;html&gt; <br>
+					&lt;head&gt;
+					<p class="ml-2" style="font-size: 20px;margin-left: 20px; color: yellow;">
+						&lt;link rel="stylesheet" href="https://linkto.api.com/css/core.css" /&gt; 
+					</p>
+					&lt;/head&gt; <br>
+					&lt;body&gt; <br>
+					&lt;div id="captcha_uit"&gt; <br>
+					&lt;/div&gt; <br>
+					&lt;/body&gt;  <br>
+					
+					&lt;script src="https://linkto.api.com/js/core.js" &gt; &lt;/script &gt; <br>
+					&lt;script src="https://linkto.api.com/js/text.js" &gt; &lt;/script &gt; <br>
+					&lt;script &gt; <br>
+					<p class="ml-2" style="font-size: 20px;margin-left: 20px;">
+					 	var Captcha_UIT_Token={
+							<p class="ml-3" style="font-size: 20px;margin-left: 20px;color: green;" >
+							UserKey: aisjduedsndnbdbnfhfey124d5s1cv5,<br>
+							APIKey: aisjduqzad1dz4d12a4fhfey124d5s15,<br>
+							successUrl: index.html,<br>
+							failUrl: error.html
+							</p>
+						};
+					</p>
+					&lt;/script &gt;<br>
+					&lt;/html &gt; <br>
+				</div>
+				<div id="gif" class="col-md-6">
+					<img class="card-img-top mb-5 mb-md-0" src="assets/images/images_recaptcha.gif" alt="..." />
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+							<p>+234 23 9873237<br>
+								<a href="mailto:#">some.email@somewhere.com</a><br>
+								<br>
+								234 Hidden Pond Road, Ashland City, TN 37015
+							</p>	
+						</div>
+					</div>
+
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Follow me</h3>
+						<div class="widget-body">
+							<p class="follow-me-icons">
+								<a href=""><i class="fa fa-twitter fa-2"></i></a>
+								<a href=""><i class="fa fa-dribbble fa-2"></i></a>
+								<a href=""><i class="fa fa-github fa-2"></i></a>
+								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+							</p>	
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<h3 class="widget-title">Text widget</h3>
+						<div class="widget-body">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
+							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>

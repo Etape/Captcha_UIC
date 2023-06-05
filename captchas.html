@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>Captcha UIT</title>
+
+	<link rel="shortcut icon" href="assets/images/logo_favicon_captcha.png">
+	
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="assets/css/styles_plugins.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- Bootstrap icons-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<style>
+	#products p,#products span,#products button{
+		font-weight: 400;
+		font-size: 22px;
+	}
+	#products h1{
+		font-weight: 500;
+		font-size: 50px;
+	}
+	#products p{
+		font-weight: 200;
+		font-size: 22px;
+	}
+	#products button{
+		border: 2px solid #212529;
+	}
+</style>
+
+<body class="home">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src="assets/images/logo_captcha_flatten_white.png"  height="40" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="index.html">Home</a></li>
+					<li class="active"><a href="#">Nos Plugins</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a class="btn" href="signin.html">Connexion / Inscription</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<!-- Product section-->
+	<section id="products" class="py-5" style="text-align: center;margin-top: 100px;">
+		
+	<!-- Product 1-->
+	<div class="container px-4 px-lg-5 my-5"  style="text-align: center;margin-bottom: 20px;">
+		<style>
+			canvas{			
+				display: inline-block;
+				position: relative;
+				top: 20%;
+				left: 0%;
+				width: 80%;
+				background-color: aqua;
+			}
+			input[type="text"]{
+				font-size: 20px;
+			}
+		</style>
+		<div class="row gx-4 gx-lg-5">
+			<div class="col-md-6" style="text-align: center;padding-left: 10px;padding-right: 10px;padding-top: 50px;" >
+				<div id="soft_captcha"  style="height: 45px; width: 60%;margin-bottom: 20px;margin-left: 20%; display: flex;padding-top: 5px;padding-left: 20px;">
+					<input id="check_soft" type="checkbox" style="height: 30px; width: 30px; padding: 5px; margin-right: 20px;" onchange="softcheck()">
+					<img id="soft_loading" src="assets/images/loading2.gif" height="30" width="30" style="margin-right: 20px;display: none;">
+					<img id="soft_done" src="assets/images/done.png" height="30" width="30" style="margin-right: 20px;display: none;">
+					<img id="soft_not_done" src="assets/images/not_done.png" height="30" width="30" style="margin-right: 20px;display: none;">
+					<p><b>Je ne suis pas un robot</b></p>
+				</div>
+				<script>
+					function softcheck(){
+						document.getElementById("check_soft").style.display="none";
+						document.getElementById("soft_loading").style.display="inline-block";
+						var millisecondsToWait = 1000;
+						setTimeout(function() {
+							document.getElementById("soft_loading").style.display="none";
+							document.getElementById("soft_done").style.display="inline-block";
+							createCaptchaWords();
+						}, millisecondsToWait);
+					}
+				</script>
+				<div id="word_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">
+					<p>Saisissez le texte dans l'image</p>
+					<div id="word_canvas" style="height: 100px; width: 80%;margin-left: 10%; margin-bottom: 20px; background:url(assets/images/noisy3.jpg)">
+					</div>
+					<input id="word_input" type="text" class="input" placeholder="saisissez le mot caché dans l'image" style="height: 40px;text-align: center; width: 60%;margin-bottom: 20px;">
+					<div style="text-align: center;">
+						<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="createCaptchaWords()">
+						<button  id="words_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;" onclick="validateCaptchaWords()">
+							<img id="words_loading" src="assets/images/loading2.gif" height="30" width="30" style="display: none;">
+							Valider
+						</button>
+					</div>
+				</div>
+				<script>
+					var code;
+					function createCaptchaWords() {
+					//clear the contents of captcha div first 
+					document.getElementById('word_canvas').innerHTML = "";
+					var charsArray =
+					"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					var lengthOtp = 6;
+					var captcha = [];
+					var captcha_ = [];
+					for (var i = 0; i < lengthOtp; i++) {
+						//below code will not allow Repetition of Characters
+						var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+						if (captcha.indexOf(charsArray[index]) == -1)
+						{
+							captcha.push(charsArray[index]);
+							captcha_.push(charsArray[index]);
+							captcha_.push("   ");
+						}
+						else i--;
+					}
+					var canv = document.createElement("canvas");
+					canv.id = "captcha";
+					canv.height = 45;
+					var ctx = canv.getContext("2d");
+					ctx.font = "40px Georgia";
+					ctx.strokeText(captcha_.join(""), 0, 30);
+					//storing captcha so that can validate you can save it somewhere else according to your specific requirements
+					code = captcha.join("");
+					document.getElementById("word_canvas").appendChild(canv); // adds the canvas to the body element
+					}
+					function validateCaptchaWords() {
+						document.getElementById("words_loading").style.display="inline-block";
+						if (document.getElementById("word_input").value == code) {
+							alert("Valid Captcha")
+						}else{
+							alert("Invalid Captcha. try Again");
+							createCaptchaWords();
+						}
+						document.getElementById("words_loading").style.display="none";
+					}
+				</script>
+				<div id="3D_words_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">
+					<p>Saisissez le texte dans l'image</p>
+					<div id="3D_words_canvas" style="height: 100px; width: 80%;margin-left: 10%;margin-bottom: 20px; background-color: yellow;">
+					</div>
+					<input type="text" class="input" placeholder="saisissez le mot caché dans l'image" style="height: 40px;text-align: center; width: 60%;margin-bottom: 20px;">
+					<div style="text-align: center;">
+						<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" i="Changer d'image">
+						<button  id="3D_words_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;">
+							<img id="3D_words_loading" src="assets/images/loading2.gif" height="30" width="30">
+							Valider
+						</button>
+					</div>
+				</div>
+				<div id="maths_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">
+					<p>Saisissez le resultat du calcul dans l'image</p>
+					<div id="maths_canvas" style="height: 100px; width: 80%;margin-left: 10%;margin-bottom: 20px; background-color: yellow;">
+					</div>
+					<input type="text" class="input" placeholder=" = ?" style="height: 40px; width: 60%;text-align: center; margin-bottom: 20px;">
+					<div style="text-align: center;">
+						<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" i="Changer d'image">
+						<button id="maths_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;">
+							<img id="maths_loading" src="assets/images/loading2.gif" height="30" width="30">
+							Valider
+						</button>
+					</div>
+				</div>
+				<div id="images_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">
+					<table style="margin-left: 5%; width: 90%;margin-bottom: 20px;">
+						<div  style="width: 90%;margin-left: 5%; padding-top: 15px; background-color: darkcyan;padding-bottom: 15px;">
+							<p id="subject">Choisir toutes les images contenant une fleur </p>
+							<img style="width: 15%; height: 0;padding-bottom: 15%;
+							background-color: lightcoral; border: 2px solid azure; border-radius: 5px;display: inline-block; position: relative;right: -50%px; ">
+						</div>
+						<tbody class="bg-light">
+							<tr>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+							</tr>
+							<tr>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+							</tr>
+							<tr>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+								<td><img style="width: 100%;height: 0;padding-top: 100%;background-color: chartreuse; border: 1px solid azure;" onclick="select(this)"></td>
+							</tr>
+						</tbody>
+						<script>
+							function select(e){
+								e.style.outline="3px solid blue";
+								e.style.borderRadius="5px"
+							}
+
+						</script>
+					</table>
+					<div style="text-align: center;">
+						<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" i="Changer d'image">
+						<button id="images_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;">
+							<img id="images_loading" src="assets/images/loading2.gif" height="30" width="30">
+							Valider
+						</button>
+					</div>
+				</div>
+				<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">
+
+			</div>
+		</div>
+	</div>
+
+	</section>
+
+
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+							<p>+237 69873237<br>
+								<a href="mailto:#">iucinfo@iuc.com</a><br>
+								<br>
+								Cameroun, Douala, Logbessou
+							</p>	
+						</div>
+					</div>
+
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Suivez nous</h3>
+						<div class="widget-body">
+							<p class="follow-me-icons">
+								<a href=""><i class="fa fa-twitter fa-2"></i></a>
+								<a href=""><i class="fa fa-dribbble fa-2"></i></a>
+								<a href=""><i class="fa fa-github fa-2"></i></a>
+								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+							</p>	
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2023, IUC, Douala. Designed by Groupe 3 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+	
+	<script>
+		function goto_pay(item){
+			location.replace("paycaptchaback.html?"+item);
+		}
+	</script>
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>

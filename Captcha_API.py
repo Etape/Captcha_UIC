@@ -66,7 +66,7 @@ def generate_captcha_images():
 
 def save_result(result):
     file1 = open("result.txt","w")
-    file1.write(result)
+    file1.write(str(result))
     file1.close() #to change file access modes
     
 def get_result():

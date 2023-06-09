@@ -148,7 +148,7 @@
 					&lt;/html &gt; <br>
 				</div>
 				<div id="gif" class="col-md-6">
-					<img class="card-img-top mb-5 mb-md-0" src="assets/images/images_recaptcha.gif" alt="..." />
+					<img class="card-img-top mb-5 mb-md-0" src="assets/images/captcha_gif.gif" alt="..." />
 				</div>
 			</div>
 		</div>
@@ -221,7 +221,7 @@
 
 		var codes=[' Captcha UIC : ks 01B ',' Captcha UIC : ks 02H ',' Captcha UIC : ks 41HC ',' Captcha UIC : ks 051H ',' Captcha UIC : ks 1A571 '];
 		var names=['Soft Captcha','Maths Captcha','Words Captcha','3D Words Captcha','Images Captcha'];
-		var images=['soft','maths','words','3d_words','images'];
+		var images=['assets/images/captcha_soft.png','assets/images/captcha_maths.png','assets/images/captcha_word.png','assets/images/captcha_3D.png','assets/images/captcha_images.png'];
 		var descriptions=[" Modèle soft rapide leger ,Accessible en un seul clic."
 		,"Modèle simple et puissant propose toute une panoplie de calculs rapides permettant de securiser votre site."
 		,"Modèle simple et puissant propose toute une panoplie de chaines de caractères permettant de securiser votre site."
@@ -236,6 +236,7 @@
 		document.getElementById("item_code").innerText=item_code;
 		document.getElementById("item_name").innerText=item_name;
 		document.getElementById("description").innerText=item_description;
+		document.getElementById("item_image").innerHTML='<img class="card-img-top mb-5 mb-md-0" src="'+item_image+'" alt="..." />'
 		 var pay_mode="";
 		function payment_mode(elt){
 			document.getElementById("mtn_money").style.border="none";

@@ -342,36 +342,3 @@ function captcha_loadCaptcha(type){
     xhr.send();
 }
 testKeys();
-
-<html>
-<head>
-<link rel="stylesheet" href="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/css/bootstrap-theme.css" />
-<link rel="stylesheet" href="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/css/bootstrap.min.css" />
-</head>
-<body>
-<div id="captcha_iuc">
-</div>
-</body>
-<script >
-var captcha_result="";
-var Captcha_UIT_Token={
-UserKey: ‘userkey’,
-APIKey: ‘apiKey’
-};
-function captcha_iuc_onsuccess(){
-captcha_result="success";
-... Ecrivez votre code de succes ici
-}
-function captcha_iuc_onfailure(){
-captcha_result="failure";
-... Ecrivez votre code d'echec ici
-}
-function captcha_iuc_onerror(){
-... Ecrivez votre code de gestion d'erreur ici
-
-}
-</script >
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" > </script >
-<script src="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/core/captcha_IUC_API_distant.js" > </script >
-</html >
-

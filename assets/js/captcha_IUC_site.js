@@ -55,7 +55,7 @@ function show_credentials(credentials){
     '    </p>'+
     '    &lt;/head&gt; <br>'+
     '    &lt;body&gt; <br>'+
-    '    &lt;div id="captcha_uit"&gt; <br>'+
+    '    &lt;div id="captcha_iuc"&gt; <br>'+
     '    &lt;/div&gt; <br>'+
     '    &lt;/body&gt;  <br>    '+
     '   &lt;script &gt; <br>'+

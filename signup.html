@@ -78,45 +78,46 @@
 							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
 							<hr>
 
-							<form>
 								<div class="top-margin">
 									<label>First Name</label>
-									<input type="text" class="form-control">
+									<input type="text"  id="first_name" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Last Name</label>
-									<input type="text" class="form-control">
+									<input type="text" id="last_name" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Email Address <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text"  id="email" class="form-control">
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="text" id="password" class="form-control">
 									</div>
 									<div class="col-sm-6">
 										<label>Confirm Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="text" id="password_confirmed"  class="form-control">
 									</div>
 								</div>
 
 								<hr>
+								<div id="captcha_iuc">
 
+								</div>
+								<hr>
 								<div class="row">
 									<div class="col-lg-8">
 										<label class="checkbox">
-											<input type="checkbox"> 
+											<input type="checkbox" id="accept_terms"> 
 											I've read the <a href="page_terms.html">Terms and Conditions</a>
 										</label>                        
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Register</button>
+										<button class="btn btn-action" onclick="captcha_register_user()">Register</button>
 									</div>
 								</div>
-							</form>
 						</div>
 					</div>
 
@@ -187,14 +188,35 @@
 
 	</footer>	
 
+	<script>
+		var captcha_result="";
+		var Captcha_UIT_Token={
+			UserKey: 'as1e4z5ezedza1d2a35z1d54e56', //as1e4z5ezedza1d2a35z1d54e56
+			APIKey: 'foierkfdssdf01df2dsf4dsf21ds1f5dsf10dsf1sdf02',  //foierkfdssdf01df2dsf4dsf21ds1f5dsf10dsf1sdf02
+			reload:true
+		};
+		function captcha_iuc_onsuccess(){
+			captcha_result="success";
+			console.log(captcha_result);
+		}
+		function captcha_iuc_onfailure(){
+			captcha_result="failure";
+			console.log(captcha_result);
+		}
+		function captcha_iuc_onerror(){
+			
+		}
+	</script>
 
 
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
+	<script src="assets/js/captcha_IUC_site.js"></script>
+	<script src="assets/js/captcha_IUC_API_distant.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

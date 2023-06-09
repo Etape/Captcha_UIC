@@ -257,8 +257,7 @@
 			console.log(phone_number.length);
 			if(pay_mode!="" ){
 				if(phone_number.startsWith("+2376") && phone_number.length==13){
-					document.getElementById("apikeys_section").style.display="inline-block";
-					document.getElementById("howtouse_section").style.display="inline-block";
+					captcha_register_sale(item_image);
 				}
 				else{
 					document.getElementById("phone_number").style.borderColor="red";
@@ -280,5 +279,6 @@
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
+	<script src="assets/js/captcha_IUC_site.js"></script>
 </body>
 </html>

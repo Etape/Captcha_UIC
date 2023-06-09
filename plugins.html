@@ -240,7 +240,10 @@
 	
 	<script>
 		function goto_pay(item){
-			location.replace("paycaptchaback.html?"+item);
+			if(getCookie('usermail')!='')
+				location.replace("paycaptchaback.html?"+item);
+			else
+				location.replace("signin.html");
 		}
 	</script>
 
@@ -250,5 +253,6 @@
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
+	<script src="assets/js/captcha_IUC_site.js"></script>
 </body>
 </html>

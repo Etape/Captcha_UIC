@@ -1,13 +1,11 @@
-var Captcha_UIT_Token={
-    UserKey: 'as1e4z5ezedza1d2a35z1d54e56', //as1e4z5ezedza1d2a35z1d54e56
-    APIKey: 'foierkfdssdf01df2dsf4dsf21ds1f5dsf10dsf1sdf02',  //foierkfdssdf01df2dsf4dsf21ds1f5dsf10dsf1sdf02
-    reload:true,
-    successUrl: "index.html",
-    failUrl: ""
-};
 var type="";
-var times={lat:0,comp:0,minTyp:0,minSel:0};
+var times={lat:0,comp:0,minTyp:100000,minSel:100000};
 var lat= Date.now();
+var logo="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/images/powered_by_logo2.png";
+var loading_gif="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/images/loading2.gif";
+var done_img="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/images/done.png";
+var not_done_img="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/images/not_done.png";
+var reload_img="https://storage.googleapis.com/recaptcha-uic.appspot.com/Recaptcha_js/images/reload.png";
 
 function testKeys(){
     console.log('testing keys ...');
@@ -45,16 +43,17 @@ function captcha_get_images(type){
 }
 
 function draw_captchas(type,image){
-    var container=document.getElementById("captcha_uit");
+    var container=document.getElementById("captcha_iuc");
+    container.style.textAlign='center';
     if(type=='soft'){
         container.innerHTML='<div id="soft_captcha"  style="height: 45px; width: 60%;margin-bottom: 20px;margin-left: 20%; display: flex;padding-top: 5px;padding-left: 20px;">'+
         '<input id="captcha_check_soft" type="checkbox" style="height: 30px; width: 30px; padding: 5px; margin-right: 20px;" onchange="captcha_softcheck()">'+
-        '<img id="captcha_soft_loading" src="assets/images/loading2.gif" height="30" width="30" style="margin-right: 20px;display: none;">'+
-        '<img id="captcha_soft_done" src="assets/images/done.png" height="30" width="30" style="margin-right: 20px;display: none;">'+
-        '<img id="captcha_soft_not_done" src="assets/images/not_done.png" height="30" width="30" style="margin-right: 20px;display: none;">'+
+        '<img id="captcha_soft_loading" src="'+loading_gif+'" height="30" width="30" style="margin-right: 20px;display: none;">'+
+        '<img id="captcha_soft_done" src="'+done_img+'" height="30" width="30" style="margin-right: 20px;display: none;">'+
+        '<img id="captcha_soft_not_done" src="'+not_done_img+'" height="30" width="30" style="margin-right: 20px;display: none;">'+
         '<p><b>Je ne suis pas un robot</b></p>'+
         '</div>'
-        +'<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">';
+        +'<img src="'+logo+'" class="w-100" height="100" alt="...">';
     }
     else if(type=='words'){
         container.innerHTML='<div id="word_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">'
@@ -64,14 +63,14 @@ function draw_captchas(type,image){
         +'</div>'
         +'<input id="captcha_words_input" onkeypress="captcha_update_typ()" type="text" class="input" placeholder="saisissez le mot caché dans l\'image" style="height: 40px;text-align: center; width: 60%;margin-bottom: 20px;">'
         +'<div style="text-align: center;">'
-        +'<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
+        +'<img src="'+reload_img+'" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
         +'<button  id="captcha_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;" onclick="captcha_testAnswer()">'
-        +'<img id="captcha_words_loading" src="assets/images/loading2.gif" height="30" width="30" style="display: none;">'
+        +'<img id="captcha_words_loading" src="'+loading_gif+'" height="30" width="30" style="display: none;">'
         +'Valider'
         +'</button>'
         +'</div>'
         +'</div>'
-        +'<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">';
+        +'<img src="'+logo+'" class="w-100" height="100" alt="...">';
     }
     else if(type=='3D'){
         container.innerHTML='<div id="3D_captcha" class="bg-light" style="text-align: center;margin-bottom: 20px;">'
@@ -81,14 +80,14 @@ function draw_captchas(type,image){
         +'</div>'
         +'<input id="captcha_3D_input" onkeypress="captcha_update_typ()" type="text" class="input" placeholder="saisissez le mot caché dans l\'image" style="height: 40px;text-align: center; width: 60%;margin-bottom: 20px;">'
         +'<div style="text-align: center;">'
-        +'<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
+        +'<img src="'+reload_img+'" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
         +'<button  id="captcha_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;" onclick="captcha_testAnswer()">'
-        +'<img id="captcha_3D_loading" src="assets/images/loading2.gif" height="30" width="30" style="display: none;">'
+        +'<img id="captcha_3D_loading" src="'+loading_gif+'" height="30" width="30" style="display: none;">'
         +'Valider'
         +'</button>'
         +'</div>'
         +'</div>'
-        +'<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">';
+        +'<img src="'+logo+'" class="w-100" height="100" alt="...">';
 
     }
     else if(type=='maths'){
@@ -99,14 +98,14 @@ function draw_captchas(type,image){
         +'</div>'
         +'<input id="captcha_maths_input"  onkeypress="captcha_update_typ()" type="text" class="input" placeholder="saisissez le mot caché dans l\'image" style="height: 40px;text-align: center; width: 60%;margin-bottom: 20px;">'
         +'<div style="text-align: center;">'
-        +'<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
+        +'<img src="'+reload_img+'" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" onclick="captcha_createCaptcha()">'
         +'<button  id="captcha_valid_captcha" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;" onclick="captcha_testAnswer()">'
-        +'<img id="captcha_maths_loading" src="assets/images/loading2.gif" height="30" width="30" style="display: none;">'
+        +'<img id="captcha_maths_loading" src="'+loading_gif+'" height="30" width="30" style="display: none;">'
         +'Valider'
         +'</button>'
         +'</div>'
         +'</div>'
-        +'<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">';
+        +'<img src="'+logo+'" class="w-100" height="100" alt="...">';
     }
     else if(type=='images'){
         var subject=image.split('[')[1];
@@ -135,14 +134,14 @@ function draw_captchas(type,image){
             +    '</tbody>'
             +'</table>'
             +'<div style="text-align: center;">'
-            +    '<img src="assets/images/reload.png" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" i="Changer d\'image">'
+            +    '<img src="'+reload_img+'" style="margin-top: -15px ; height: 45px; width: 45px; padding: 5px; margin-right: 50px;" i="Changer d\'image">'
             +    '<button id="images_valid_captcha"  onclick="captcha_testAnswer()" class="btn btn-primary" style="height: 45px; width: 40%;margin-bottom: 20px;">'
-            +        '<img id="captcha_images_loading" src="assets/images/loading2.gif" height="30" width="30" style="display:none">'
+            +        '<img id="captcha_images_loading" src="'+loading_gif+'" height="30" width="30" style="display:none">'
             +        'Valider'
             +    '</button>'
             +'</div>'
         +'</div>'
-        +'<img src="assets/images/powered_by_logo2.png" class="w-100" height="100" alt="...">';
+        +'<img src="'+logo+'" class="w-100" height="100" alt="...">';
 
     }
 }
@@ -197,20 +196,17 @@ function captcha_softcheck(){
                     document.getElementById("captcha_soft_loading").style.display="none";
                     document.getElementById("captcha_soft_done").style.display="inline-block";
                     Captcha_UIT_Token.result="Passed";
-                    if(Captcha_UIT_Token.failUrl !="" )
-                        location.replace(Captcha_UIT_Token.failUrl);
+                    captcha_iuc_onsuccess();
                 }
                 else{
                     document.getElementById("captcha_soft_loading").style.display="none";
                     document.getElementById("captcha_soft_not_done").style.display="inline-block";
                     Captcha_UIT_Token.result="Failed";
-                    if(Captcha_UIT_Token.failUrl !="" )
-                        location.replace(Captcha_UIT_Token.failUrl);
-                    alert("Echec de test Captcha, Veuillez recharger la page pour réessayer");
+                    captcha_iuc_onfailure();
                 }
             }
             else{
-                alert("Impossible de Verifier vos Captchas, Veuillez réessayer");
+                captcha_iuc_onerror();
             }
         }
         xhr.send();
@@ -230,25 +226,35 @@ function captcha_times_catcher(type){
     }
     return times.lat+'_'+times.comp+'_'+times.minTyp+'_'+times.minSel;
 }
+var prevSel=Date.now();
 function captcha_update_sel(){
     if(firstSel==0){
-        times.minSel=Date.now();
+        prevSel=Date.now();
         times.comp=Date.now();
         firstSel=1;
     }
     else{
-        times.minSel=Date.now() - times.minSel;
+        var diff_sel = Date.now()-prevSel;
+        if(diff_sel<times.minSel){
+            times.minSel = diff_sel;
+        }
+        prevSel=Date.now();
     }
 }
+var prevTyp=Date.now();
 function captcha_update_typ(){
     console.log('typing ...')
     if(firstTyp == 0){
-        times.minTyp=Date.now();
+        prevTyp=Date.now();
         times.comp=Date.now();
         firstTyp = 1;
     }
     else{
-        times.minTyp = Date.now() - times.minTyp;
+        var diff_typ = Date.now()-prevTyp;
+        if(diff_typ<times.minTyp){
+            times.minTyp = diff_typ;
+        }
+        prevTyp=Date.now();
     }
 }
 
@@ -282,19 +288,14 @@ function captcha_testAnswer(){
             loading.style.display="none";   
             if (xhr.responseText == "OK") {
                 Captcha_UIT_Token.result="Passed";
-                if(Captcha_UIT_Token.successUrl !="" )
-                    location.replace(Captcha_UIT_Token.successUrl);
+                captcha_iuc_onsuccess();
             }
             else{
                 Captcha_UIT_Token.result="Failed";
-                if(Captcha_UIT_Token.failUrl !="" )
-                    location.replace(Captcha_UIT_Token.failUrl);
+                captcha_iuc_onfailure();
                 //draw_captchas(type);
                 alert("Echec de test Captcha, Veuillez recharger la page pour réessayer");
             }
-        }
-        else{
-            //alert("Impossible de Verifier vos Captchas, Veuillez réessayer");
         }
     }
     

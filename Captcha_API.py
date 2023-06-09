@@ -34,14 +34,15 @@ def Evaluate_times(times,typ):
         return True
     if typ=='3D' and latency>=1500 and completion>=2000 and minTyping>=200:
         return True
-    if typ=='maths' and latency>=1500 and completion>=1500 and minTyping>=200:
+    if typ=='maths' and latency>=1500 and completion>=1500 and minTyping>=100:
         return True
-    if typ=='images' and latency>=1500 and completion>=1500 and minSelecting>=150:
+    if typ=='images' and latency>=1500 and completion>=1500 and minSelecting>=100:
         return True
     return False
 
 def generate_captcha(type_,N):
     n=random.randint(0, N+1)
+    print('position: ' ,n)
     words = db.collection('Captchas').where('type','==',type_).where('position','==',n).stream()
     for word in words:
         datas=word.to_dict()
@@ -77,17 +78,20 @@ def index():
 
 @app.route('/getWord', methods=['GET'])
 def getWord():
-    im_,resultw=generate_captcha('word',132)
+    im_,resultw=generate_captcha('words',132)
+    save_result(resultw)
     return im_
 
 @app.route('/get3d', methods=['GET'])
 def get3d():
     im_,resultw=generate_captcha('3D',1)
+    save_result(resultw)
     return im_
 
 @app.route('/getMaths', methods=['GET'])
 def getMaths():
     im_,resultw=generate_captcha('maths',92)
+    save_result(resultw)
     return im_
 
 @app.route('/getImages', methods=['GET'])
@@ -142,7 +146,7 @@ def registerSale():
     user_id = request.args.get('user_id')
     type_ = request.args.get('type')
     saleref = db.collection('Sales').document()
-    user_key=saleref.getId()
+    user_key=saleref.id
     API_key=user_id+'%'+user_key
     saleref.set({
         'user_key':user_key,
@@ -152,20 +156,31 @@ def registerSale():
         'date': time.time()
     })
     return API_key+' '+user_key
+
 @app.route('/registerUser', methods=['GET'])
-def registerSale():
+def registerUser():
     first_name = request.args.get('first_name')
     last_name = request.args.get('last_name')
     email = request.args.get('email')
     password = request.args.get('password')
-    userref = db.collection('Sales').document()
-    saleref.set({
+    userref = db.collection('User').document()
+    userref.set({
         'first_name':first_name,
         'last_name':last_name,
         'email':email,
         'password':password
     })
-    return "OK"
+    return userref.id
+
+@app.route('/signinUser', methods=['GET'])
+def signinUser():
+    email = request.args.get('email')
+    password = request.args.get('password')
+    users = db.collection('User').where('email','==',email).where('password','==',password).stream()
+    for user in users:
+        datas=user.to_dict()
+        return user.id
+    return "False"
 
 CORS(app, support_credentials=True)
 app.run(host='0.0.0.0')
